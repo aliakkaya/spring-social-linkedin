@@ -153,18 +153,18 @@ configure(rootProject) {
         dependsOn subprojects*.tasks*.matching { task -> task.name == 'assemble' || task.name.endsWith('Zip') || task.name.endsWith('generatePom') }
         classifier = 'dist'
 
-        evaluationDependsOn(':docs')
-        evaluationDependsOn(':docs:manual')
+        //evaluationDependsOn(':docs')
+        //evaluationDependsOn(':docs:manual')
 
         def zipRootDir = "${project.name}-$version"
         into(zipRootDir) {
             from(rootDir) {
                 include '*.txt'
             }
-            into('docs') {
-                with(project(':docs').apiSpec)
-                with(project(':docs:manual').spec)
-            }
+        //    into('docs') {
+        //        with(project(':docs').apiSpec)
+        //        with(project(':docs:manual').spec)
+        //    }
             into('dist') {
                 from coreModuleProjects.collect {project -> project.libsDir }
             }
@@ -173,8 +173,8 @@ configure(rootProject) {
 
     artifacts {
         archives dist
-        archives project(':docs').docsZip
-        archives project(':docs').schemaZip
+    //    archives project(':docs').docsZip
+    //    archives project(':docs').schemaZip
     }
 
     task wrapper(type: Wrapper) {
