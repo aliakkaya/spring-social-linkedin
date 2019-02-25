@@ -32,8 +32,8 @@ public class LinkedInServiceProvider extends AbstractOAuth2ServiceProvider<Linke
 
 	private static OAuth2Template getOAuth2Template(String clientId, String clientSecret) {
 		OAuth2Template oAuth2Template = new OAuth2Template(clientId, clientSecret,
-			"https://www.linkedin.com/uas/oauth2/authorization",
-			"https://www.linkedin.com/uas/oauth2/accessToken");
+			"https://www.linkedin.com/oauth/v2/authorization",
+			"https://www.linkedin.com/oauth/v2/accessToken");
 		oAuth2Template.setUseParametersForClientAuthentication(true);
 		return oAuth2Template;
 	}
