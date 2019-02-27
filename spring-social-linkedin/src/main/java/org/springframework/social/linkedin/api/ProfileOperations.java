@@ -34,7 +34,7 @@ public interface ProfileOperations {
 	 * 
 	 * @return a URL to the user's public profile page.
 	 */
-	String getProfileUrl();
+	//String getProfileUrl();
 
 	/**
 	 * Retrieves the current user's profile details.
@@ -42,7 +42,10 @@ public interface ProfileOperations {
 	 * @return the user's profile data.
 	 */
 	LinkedInProfile getUserProfile();
-	
+
+
+	LinkedInProfileEmail getUserProfileEmail();
+
 	/**
 	 * Retrieves a profile by id.
 	 * 

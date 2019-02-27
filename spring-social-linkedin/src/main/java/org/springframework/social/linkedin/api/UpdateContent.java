@@ -24,11 +24,9 @@ public class UpdateContent extends LinkedInProfile {
 
 	private static final long serialVersionUID = 1L;
 	
-	public UpdateContent(String id, String firstName, String lastName,
-			String headline, String industry, String publicProfileUrl,
-			UrlResource siteStandardProfileRequest, String profilePictureUrl) {
-		super(id, firstName, lastName, headline, industry, publicProfileUrl,
-				siteStandardProfileRequest, profilePictureUrl);
+	public UpdateContent(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName,
+						 LinkedInProfileProfilePicture profilePicture) {
+		super(id, firstName, lastName, maidenName, profilePicture);
 	}
 
 }

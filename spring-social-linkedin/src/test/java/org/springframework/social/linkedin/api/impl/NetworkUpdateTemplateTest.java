@@ -43,6 +43,7 @@ import org.springframework.social.linkedin.api.UpdateType;
 
 public class NetworkUpdateTemplateTest extends AbstractLinkedInApiTest {
 
+	/*
 	@Test 
 	public void postUpdate() {
 		mockServer.expect(requestTo("https://api.linkedin.com/v1/people/~/person-activities?oauth2_access_token=ACCESS_TOKEN"))
@@ -176,5 +177,5 @@ public class NetworkUpdateTemplateTest extends AbstractLinkedInApiTest {
 		assertPersonActivity(((UpdateContentPersonActivity)updates.get(8).getUpdateContent()).getPersonActivities().get(0),
 				1700, "<a href=\"http://www.linkedin.com//profile?viewProfile=&key=7024000\">Paul O&#39;Smith</a> recommends <a href=\"http://www.linkedin.com//redirect?url=http%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fosview%2Fcanvas%3F_ch_page_id%3D1%26_ch_panel_id%3D3%26_ch_app_id%3D20%26_applicationId%3D1700%26_ownerId%3D7024701%26osUrlHash%3DepGa%26appParams%3D%257B%2522view%2522%253A%2522book%2522%252C%2522asin%2522%253A%25220446563048%2522%252C%2522offset%2522%253A%25220%2522%257D&urlhash=aA19\">Delivering Happiness: A Path to Profits, Passion, and Purpose</a>");
 	}
-	
+	*/
 }

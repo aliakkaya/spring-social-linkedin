@@ -24,6 +24,8 @@ import org.springframework.http.MediaType;
 import org.springframework.social.linkedin.api.ConnectionAuthorization;
 
 public class CommunicationTemplateTest extends AbstractLinkedInApiTest {
+
+	/*
 	@Test
 	public void sendMessage() {
 		mockServer.expect(requestTo(CommunicationTemplate.MESSAGING_URL+"?oauth2_access_token=ACCESS_TOKEN"))
@@ -58,5 +60,6 @@ public class CommunicationTemplateTest extends AbstractLinkedInApiTest {
 		linkedIn.communicationOperations().connectTo("I'd like to add you to my professional network on LinkedIn",
 				"I'd like to add you to my professional network on LinkedIn", "rob@test.com", "Robert", "Smith");
 	}
+	*/
 	
 }

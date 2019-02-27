@@ -42,16 +42,15 @@ public class LinkedInAdapter implements ApiAdapter<LinkedIn> {
 	public void setConnectionValues(LinkedIn linkedin, ConnectionValues values) {
 		LinkedInProfile profile = linkedin.profileOperations().getUserProfile();
 		values.setProviderUserId(profile.getId());
-		values.setDisplayName(profile.getFirstName() + " " + profile.getLastName());
-		values.setProfileUrl(profile.getPublicProfileUrl());
-		values.setImageUrl(profile.getProfilePictureUrl());
+		values.setDisplayName(profile.getFirstName().getLocalized().getEn_US() + " " + profile.getLastName().getLocalized().getEn_US());
+		values.setImageUrl(profile.getProfilePicture().getDisplayImage());
 	}
 
 	public UserProfile fetchUserProfile(LinkedIn linkedin) {
 		LinkedInProfile profile = linkedin.profileOperations().getUserProfile();
 		return new UserProfileBuilder()
 				.setName(profile.getFirstName() + " " + profile.getLastName())
-				.setEmail(profile.getEmailAddress())
+				//.setEmail(profile.getEmailAddress())
 				.build();
 	}
 	

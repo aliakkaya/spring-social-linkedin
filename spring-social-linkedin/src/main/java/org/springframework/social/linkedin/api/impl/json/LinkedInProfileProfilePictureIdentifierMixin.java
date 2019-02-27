@@ -13,27 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.social.linkedin.api;
+package org.springframework.social.linkedin.api.impl.json;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.social.linkedin.api.LinkedInProfileProfilePictureIdentifier;
 
-/**
- * A group update
- * 
- * @author Robert Drysdale
- */
-public class UpdateContentGroup extends UpdateContent {
+import java.util.ArrayList;
 
-	private static final long serialVersionUID = 1L;
+@JsonIgnoreProperties(ignoreUnknown = true)
+abstract class LinkedInProfileProfilePictureIdentifierMixin extends LinkedInObjectMixin {
+
+	@JsonCreator
+    LinkedInProfileProfilePictureIdentifierMixin(
+			@JsonProperty("identifier") String identifier) {}
 	
-	private List<MemberGroup> memberGroups;
-
-	public UpdateContentGroup(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName,LinkedInProfileProfilePicture profilePicture) {
-		super(id, firstName, lastName, maidenName, profilePicture);
-	}
-
-	public List<MemberGroup> getMemberGroups() {
-		return memberGroups;
-	}
 
 }

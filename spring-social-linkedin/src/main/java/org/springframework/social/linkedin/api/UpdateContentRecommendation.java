@@ -25,19 +25,20 @@ import java.util.List;
 public class UpdateContentRecommendation extends UpdateContent {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<Recommendation> recommendationsGiven;
-	
+
 	private List<Recommendation> recommendationsReceived;
-	
-	public UpdateContentRecommendation(String id, String firstName, String lastName, String headline, String industry, String publicProfileUrl, UrlResource siteStandardProfileRequest, String profilePictureUrl) {
-		super(id, firstName, lastName, headline, industry, publicProfileUrl, siteStandardProfileRequest, profilePictureUrl);
+
+	public UpdateContentRecommendation(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
+		super(id, firstName, lastName, maidenName, profilePicture);
 	}
-	
+
+
 	public List<Recommendation> getRecommendationsGiven() {
 		return recommendationsGiven;
 	}
-	
+
 	public List<Recommendation> getRecommendationsReceived() {
 		return recommendationsReceived;
 	}

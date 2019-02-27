@@ -15,25 +15,24 @@
  */
 package org.springframework.social.linkedin.api;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
- * A group update
+ * Model class containing a user's LinkedIn profile information.
  * 
- * @author Robert Drysdale
+ * @author Craig Walls
  */
-public class UpdateContentGroup extends UpdateContent {
+public class LinkedInProfileLocalized extends LinkedInObject implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	private List<MemberGroup> memberGroups;
+		public LinkedInProfileLocalized(String en_US) {
+			this.en_US = en_US;
+		}
 
-	public UpdateContentGroup(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName,LinkedInProfileProfilePicture profilePicture) {
-		super(id, firstName, lastName, maidenName, profilePicture);
-	}
+		private String en_US = null;
 
-	public List<MemberGroup> getMemberGroups() {
-		return memberGroups;
-	}
+		public String getEn_US() {
+			return en_US;
+		}
+
 
 }

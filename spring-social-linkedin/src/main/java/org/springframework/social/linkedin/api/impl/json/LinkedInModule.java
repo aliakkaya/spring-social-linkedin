@@ -15,69 +15,16 @@
  */
 package org.springframework.social.linkedin.api.impl.json;
 
-import org.springframework.social.linkedin.api.CodeAndName;
-import org.springframework.social.linkedin.api.Comment;
-import org.springframework.social.linkedin.api.Comments;
-import org.springframework.social.linkedin.api.Companies;
-import org.springframework.social.linkedin.api.Company;
+import org.springframework.social.linkedin.api.*;
 import org.springframework.social.linkedin.api.Company.CompanyAddress;
 import org.springframework.social.linkedin.api.Company.CompanyContactInfo;
 import org.springframework.social.linkedin.api.Company.CompanyLocation;
-import org.springframework.social.linkedin.api.CompanyJobUpdate;
-import org.springframework.social.linkedin.api.ConnectionAuthorization;
-import org.springframework.social.linkedin.api.CurrentShare;
-import org.springframework.social.linkedin.api.Education;
-import org.springframework.social.linkedin.api.Group;
 import org.springframework.social.linkedin.api.Group.GroupCount;
 import org.springframework.social.linkedin.api.Group.GroupPosts;
 import org.springframework.social.linkedin.api.Group.GroupRelation;
-import org.springframework.social.linkedin.api.GroupMemberships;
-import org.springframework.social.linkedin.api.GroupSettings;
-import org.springframework.social.linkedin.api.GroupSuggestions;
-import org.springframework.social.linkedin.api.ImAccount;
-import org.springframework.social.linkedin.api.Job;
-import org.springframework.social.linkedin.api.JobBookmark;
-import org.springframework.social.linkedin.api.JobBookmarks;
-import org.springframework.social.linkedin.api.JobPosition;
-import org.springframework.social.linkedin.api.Jobs;
-import org.springframework.social.linkedin.api.Likes;
-import org.springframework.social.linkedin.api.LinkedInConnections;
-import org.springframework.social.linkedin.api.LinkedInDate;
-import org.springframework.social.linkedin.api.LinkedInNetworkUpdate;
-import org.springframework.social.linkedin.api.LinkedInNetworkUpdates;
-import org.springframework.social.linkedin.api.LinkedInProfile;
-import org.springframework.social.linkedin.api.LinkedInProfileFull;
-import org.springframework.social.linkedin.api.LinkedInProfiles;
-import org.springframework.social.linkedin.api.Location;
-import org.springframework.social.linkedin.api.MemberGroup;
-import org.springframework.social.linkedin.api.NetworkStatistics;
-import org.springframework.social.linkedin.api.PersonActivity;
-import org.springframework.social.linkedin.api.PhoneNumber;
-import org.springframework.social.linkedin.api.Position;
-import org.springframework.social.linkedin.api.Post;
 import org.springframework.social.linkedin.api.Post.Attachment;
 import org.springframework.social.linkedin.api.Post.PostRelation;
-import org.springframework.social.linkedin.api.PostComment;
-import org.springframework.social.linkedin.api.PostComments;
-import org.springframework.social.linkedin.api.Product;
 import org.springframework.social.linkedin.api.Product.ProductRecommendation;
-import org.springframework.social.linkedin.api.Products;
-import org.springframework.social.linkedin.api.Recommendation;
-import org.springframework.social.linkedin.api.Relation;
-import org.springframework.social.linkedin.api.Share;
-import org.springframework.social.linkedin.api.TwitterAccount;
-import org.springframework.social.linkedin.api.UpdateAction;
-import org.springframework.social.linkedin.api.UpdateContent;
-import org.springframework.social.linkedin.api.UpdateContentCompany;
-import org.springframework.social.linkedin.api.UpdateContentConnection;
-import org.springframework.social.linkedin.api.UpdateContentFollow;
-import org.springframework.social.linkedin.api.UpdateContentGroup;
-import org.springframework.social.linkedin.api.UpdateContentPersonActivity;
-import org.springframework.social.linkedin.api.UpdateContentRecommendation;
-import org.springframework.social.linkedin.api.UpdateContentShare;
-import org.springframework.social.linkedin.api.UpdateContentStatus;
-import org.springframework.social.linkedin.api.UpdateContentViral;
-import org.springframework.social.linkedin.api.UrlResource;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
@@ -96,7 +43,20 @@ public class LinkedInModule extends SimpleModule {
 	public void setupModule(SetupContext context) {
 		context.setMixInAnnotations(LinkedInConnections.class, LinkedInConnectionsMixin.class);
 		context.setMixInAnnotations(LinkedInProfile.class, LinkedInProfileMixin.class);
+		context.setMixInAnnotations(LinkedInProfileLocalized.class, LinkedInProfileLocalizedMixin.class);
+		context.setMixInAnnotations(LinkedInProfileLocalizedField.class, LinkedInProfileLocalizedFieldMixin.class);
+		context.setMixInAnnotations(LinkedInProfilePreferedLocale.class, LinkedInProfilePreferedLocaleMixin.class);
+
+		context.setMixInAnnotations(LinkedInProfileProfilePicture.class, LinkedInProfileProfilePictureMixin.class);
+		context.setMixInAnnotations(LinkedInProfileProfilePictureElements.class, LinkedInProfileProfilePictureElementsMixin.class);
+		context.setMixInAnnotations(LinkedInProfileProfilePictureElement.class, LinkedInProfileProfilePictureElementMixin.class);
+		context.setMixInAnnotations(LinkedInProfileProfilePictureIdentifier.class, LinkedInProfileProfilePictureIdentifierMixin.class);
+
 		context.setMixInAnnotations(LinkedInProfileFull.class, LinkedInProfileFullMixin.class);
+		context.setMixInAnnotations(LinkedInProfileEmail.class, LinkedInProfileEmailMixin.class);
+		context.setMixInAnnotations(LinkedInProfileEmailElement.class, LinkedInProfileEmailElementMixin.class);
+		context.setMixInAnnotations(LinkedInProfileEmailHandle.class, LinkedInProfileEmailHandleMixin.class);
+
 		context.setMixInAnnotations(MemberGroup.class, MemberGroupMixin.class);
 		context.setMixInAnnotations(Recommendation.class, RecommendationMixin.class);
 		context.setMixInAnnotations(PersonActivity.class, PersonActivityMixin.class);

@@ -15,7 +15,9 @@
  */
 package org.springframework.social.linkedin.api.impl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.List;
 
@@ -142,6 +144,7 @@ public class LinkedInTemplate extends AbstractOAuth2ApiBinding implements Linked
 		RestTemplate restTemplate = getRestTemplate();
 		if (interceptorsSupported) {
 			List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
+			//interceptors.add(new LoggingInterceptor());
 			interceptors.add(new JsonFormatInterceptor());
 		} else {
 			// for Spring 3.0.x where interceptors aren't supported
@@ -179,16 +182,59 @@ public class LinkedInTemplate extends AbstractOAuth2ApiBinding implements Linked
 	
 	private static boolean interceptorsSupported = ClassUtils.isPresent("org.springframework.http.client.ClientHttpRequestInterceptor", LinkedInTemplate.class.getClassLoader());
 	
-	static final String BASE_URL = "https://api.linkedin.com/v1/people/";
-	
+	static final String BASE_URL = "https://api.linkedin.com/v2/";
+
+	static final String BASE_ME_URL = BASE_URL + "me?projection=(id,firstName,maidenName,lastName,profilePicture(displayImage~:playableStreams))";
+
+	static final String BASE_EMAIL_URL = BASE_URL + "emailAddress?q=members&projection=(elements*(handle~))";
+
 	private static final class JsonFormatInterceptor implements ClientHttpRequestInterceptor {
 		public ClientHttpResponse intercept(HttpRequest request, byte[] body,
 				ClientHttpRequestExecution execution) throws IOException {
 			HttpRequest contentTypeResourceRequest = new HttpRequestDecorator(request);
 			contentTypeResourceRequest.getHeaders().add("x-li-format", "json");
-			return execution.execute(contentTypeResourceRequest, body);
+			ClientHttpResponse response = execution.execute(contentTypeResourceRequest, body);
+			return response;
 		}
 		
+	}
+
+	private static final class LoggingInterceptor implements ClientHttpRequestInterceptor {
+		public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+											ClientHttpRequestExecution execution) throws IOException {
+			HttpRequest contentTypeResourceRequest = new HttpRequestDecorator(request);
+			traceRequest(request, body);
+			ClientHttpResponse response = execution.execute(contentTypeResourceRequest, body);
+			traceResponse(response);
+			return response;
+		}
+
+	}
+
+	private static void traceRequest(HttpRequest request, byte[] body) throws IOException {
+		System.out.println("===========================request begin================================================");
+		System.out.println("URI         : " + request.getURI());
+		System.out.println("Method      : " + request.getMethod());
+		System.out.println("Headers     : "+ request.getHeaders() );
+		System.out.println("Request body: " + new String(body, "UTF-8"));
+		System.out.println("==========================request end================================================");
+	}
+
+	private static void traceResponse(ClientHttpResponse response) throws IOException {
+		StringBuilder inputStringBuilder = new StringBuilder();
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getBody(), "UTF-8"));
+		String line = bufferedReader.readLine();
+		while (line != null) {
+			inputStringBuilder.append(line);
+			inputStringBuilder.append('\n');
+			line = bufferedReader.readLine();
+		}
+		System.out.println("============================response begin==========================================");
+		System.out.println("Status code  : " + response.getStatusCode());
+		System.out.println("Status text  : " + response.getStatusText());
+		System.out.println("Headers      : " + response.getHeaders());
+		System.out.println("Response body: " + inputStringBuilder.toString());
+		System.out.println("=======================response end=================================================");
 	}
 	
 	private static final class OAuth2TokenParameterRequestInterceptor implements ClientHttpRequestInterceptor {

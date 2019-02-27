@@ -15,6 +15,8 @@
  */
 package org.springframework.social.linkedin.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -27,36 +29,23 @@ public class LinkedInProfile extends LinkedInObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private final String id;
-	
-	private final String firstName;
-	
-	private final String lastName;
-	
-	private final String headline;
-	
-	private final String industry;
 
-	private String emailAddress;
-	
-	private final UrlResource siteStandardProfileRequest;
-	
-	private final String publicProfileUrl;
-	
-	private final String profilePictureUrl;
-	
-	private String summary;
-	
+	private final LinkedInProfileLocalizedField firstName;
+
+	private final LinkedInProfileLocalizedField maidenName;
+
+	private final LinkedInProfileLocalizedField lastName;
+
+	private final LinkedInProfileProfilePicture profilePicture;
+
 	private ConnectionAuthorization connectionAuthorization;
 	
-	public LinkedInProfile(String id, String firstName, String lastName, String headline, String industry, String publicProfileUrl, UrlResource siteStandardProfileRequest, String profilePictureUrl) {
+	public LinkedInProfile(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
 		this.id = id;
 		this.firstName = firstName;
+		this.maidenName = maidenName;
 		this.lastName = lastName;
-		this.headline = headline;
-		this.industry = industry;
-		this.publicProfileUrl = publicProfileUrl;
-		this.siteStandardProfileRequest = siteStandardProfileRequest;
-		this.profilePictureUrl = profilePictureUrl;
+		this.profilePicture = profilePicture;
 	}
 
 	/**
@@ -69,73 +58,39 @@ public class LinkedInProfile extends LinkedInObject implements Serializable {
 	/**
 	 * The user's first name
 	 */
-	public String getFirstName() {
+	public LinkedInProfileLocalizedField getFirstName() {
 		return firstName;
 	}
 
 	/**
+	 * The user's first name
+	 */
+	public LinkedInProfileLocalizedField getMaidenName() {
+		return maidenName;
+	}
+	/**
 	 * The user's last name
 	 */
-	public String getLastName() {
+	public LinkedInProfileLocalizedField getLastName() {
 		return lastName;
 	}
 
-	/**
-	 * The user's email address (if available).
-	 * Requires "r_emailaddress" scope; will be null if "r_emailaddress" scope is not authorized on the connection.
-	 */
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-	
-	/**
-	 * The user's headline
-	 */
-	public String getHeadline() {
-		return headline;
-	}
 
-	/**
-	 * The user's industry
-	 */
-	public String getIndustry() {
-		return industry;
-	}
-
-	/**
-	 * A URL to the user's standard profile. The content shown at this profile will depend upon what the requesting user is allowed to see.
-	 */
-	public UrlResource getSiteStandardProfileRequest() {
-		return siteStandardProfileRequest;
-	}
-
-	/**
-	 * A URL to the user's public profile. The content shown at this profile is intended for public display and is determined by the user's privacy settings.
-	 * May be null if the user's profile isn't public.
-	 */
-	public String getPublicProfileUrl() {
-		return publicProfileUrl;
-	}
-	
 	/**
 	 * A URL to the user's profile picture.
 	 */
-	public String getProfilePictureUrl() {
-		return profilePictureUrl;
+	public LinkedInProfileProfilePicture getProfilePicture() {
+		return profilePicture;
 	}
 	
-	/**
-	 * The user's summary.
-	 */
-	public String getSummary() {
-		return summary;
-	}
-	
+
 	/**
 	 * @return Authorization information required for connecting to this user.
 	 */
 	public ConnectionAuthorization getConnectionAuthorization() {
 		return connectionAuthorization;
 	}
+
+
 
 }

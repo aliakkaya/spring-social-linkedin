@@ -28,8 +28,8 @@ public class UpdateContentFollow extends UpdateContent {
 	
 	private Company following;
 	
-	public UpdateContentFollow(String id, String firstName, String lastName, String headline, String industry, String publicProfileUrl, UrlResource siteStandardProfileRequest, String profilePictureUrl) {
-		super(id, firstName, lastName, headline, industry, publicProfileUrl, siteStandardProfileRequest, profilePictureUrl);
+	public UpdateContentFollow(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
+		super(id, firstName, lastName, maidenName, profilePicture);
 	}
 	
 	public String getAction() {

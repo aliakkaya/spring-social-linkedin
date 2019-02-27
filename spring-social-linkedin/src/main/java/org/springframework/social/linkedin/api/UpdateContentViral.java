@@ -26,8 +26,8 @@ public class UpdateContentViral extends UpdateContent {
 	
 	private UpdateAction updateAction;
 	
-	public UpdateContentViral(String id, String firstName, String lastName, String headline, String industry, String publicProfileUrl, UrlResource siteStandardProfileRequest, String profilePictureUrl) {
-		super(id, firstName, lastName, headline, industry, publicProfileUrl, siteStandardProfileRequest, profilePictureUrl);
+	public UpdateContentViral(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
+		super(id, firstName, lastName, maidenName, profilePicture);
 	}
 	
 	public UpdateAction getUpdateAction() {

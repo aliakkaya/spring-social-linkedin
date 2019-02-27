@@ -28,10 +28,10 @@ public class UpdateContentConnection extends UpdateContent {
 	
 	private List<LinkedInProfile> connections;
 	
-	public UpdateContentConnection(String id, String firstName, String lastName, String headline, String industry, String publicProfileUrl, UrlResource siteStandardProfileRequest, String profilePictureUrl) {
-		super(id, firstName, lastName, headline, industry, publicProfileUrl, siteStandardProfileRequest, profilePictureUrl);
+	public UpdateContentConnection(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
+		super(id, firstName, lastName, maidenName, profilePicture);
 	}
-	
+
 	public List<LinkedInProfile> getConnections() {
 		return connections;
 	}

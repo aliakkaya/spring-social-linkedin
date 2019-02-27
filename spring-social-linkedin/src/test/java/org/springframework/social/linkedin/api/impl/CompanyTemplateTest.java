@@ -32,6 +32,8 @@ import org.springframework.social.linkedin.api.Product;
 import org.springframework.social.linkedin.api.Products;
 
 public class CompanyTemplateTest extends AbstractLinkedInApiTest {
+
+	/*
 	@Test
 	public void getCompany() {
 		mockServer.expect(requestTo(CompanyTemplate.COMPANY_URL.replaceFirst("\\{id\\}", "/1337").replaceFirst("\\{filter\\}", "") + "&oauth2_access_token=ACCESS_TOKEN")).andExpect(method(GET))
@@ -161,5 +163,6 @@ public class CompanyTemplateTest extends AbstractLinkedInApiTest {
 		assertEquals("Please \"like\" our College Facebook ( http://www.facebook.com/pages/CSU-Northridge-College-of-Business-and-Economics/178294905565227 ), \"follow\" us on Tumblr ( http://cobaecsun.tumblr.com ), and \"follow\" us on Twitter ( http://twitter.com/cobaecsun ).", p.getRecommendations().get(0).getText());
 		assertEquals(new Date(1319639274411l), p.getRecommendations().get(0).getTimestamp());
 	}
+	*/
 
 }

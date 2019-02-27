@@ -30,6 +30,7 @@ import org.springframework.social.linkedin.api.NetworkStatistics;
 
 public class ConnectionTemplateTest extends AbstractLinkedInApiTest {
 
+	/*
 	@Test
 	public void getConnections() {
 		mockServer.expect(requestTo("https://api.linkedin.com/v1/people/~/connections?format=json&oauth2_access_token=ACCESS_TOKEN")).andExpect(method(GET))
@@ -73,4 +74,5 @@ public class ConnectionTemplateTest extends AbstractLinkedInApiTest {
 				"http://www.linkedin.com/profile?viewProfile=&key=822306&authToken=YmIW&authType=name&trk=api*a121026*s129482*");
 	}
 
+	*/
 }

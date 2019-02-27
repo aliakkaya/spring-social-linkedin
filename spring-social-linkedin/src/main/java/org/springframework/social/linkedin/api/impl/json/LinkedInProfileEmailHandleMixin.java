@@ -13,25 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.social.linkedin.api;
+package org.springframework.social.linkedin.api.impl.json;
 
-/**
- * A status update
- * 
- * @author Robert Drysdale
- */
-public class UpdateContentStatus extends UpdateContent {
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	private static final long serialVersionUID = 1L;
-	
-	private String currentStatus;
+@JsonIgnoreProperties(ignoreUnknown = true)
+abstract class LinkedInProfileEmailHandleMixin extends LinkedInObjectMixin {
 
-	public UpdateContentStatus(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
-		super(id, firstName, lastName, maidenName, profilePicture);
-	}
 
-	public String getCurrentStatus() {
-		return currentStatus;
-	}
+	@JsonCreator
+	LinkedInProfileEmailHandleMixin(
+			@JsonProperty("emailAddress") String emailAddress) {}
+
 
 }

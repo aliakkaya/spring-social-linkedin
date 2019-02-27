@@ -15,27 +15,20 @@
  */
 package org.springframework.social.linkedin.api.impl.json;
 
-import org.springframework.social.linkedin.api.ConnectionAuthorization;
-import org.springframework.social.linkedin.api.LinkedInProfileLocalizedField;
-import org.springframework.social.linkedin.api.LinkedInProfileProfilePicture;
-import org.springframework.social.linkedin.api.UrlResource;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.social.linkedin.api.*;
+
+import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-abstract class LinkedInProfileMixin extends LinkedInObjectMixin {
+abstract class LinkedInProfileEmailMixin extends LinkedInObjectMixin {
 
 	@JsonCreator
-	LinkedInProfileMixin(
-		@JsonProperty("id") String id, 
-		@JsonProperty("firstName") LinkedInProfileLocalizedField firstName,
-		@JsonProperty("lastName") LinkedInProfileLocalizedField lastName,
-		@JsonProperty("maidenName") LinkedInProfileLocalizedField maidenName,
-		//@JsonProperty("siteStandardProfileRequest") UrlResource siteStandardProfileRequest,
-		@JsonProperty("profilePicture") LinkedInProfileProfilePicture profilePicture) {}
+    LinkedInProfileEmailMixin(
+		@JsonProperty("elements") ArrayList<LinkedInProfileEmailElement> handleValue) {}
 	
 	/*@JsonProperty("summary")
 	String summary;

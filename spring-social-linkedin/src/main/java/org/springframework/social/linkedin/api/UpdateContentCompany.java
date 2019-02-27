@@ -30,10 +30,11 @@ public class UpdateContentCompany extends UpdateContent {
 	
 	private Company company;
 	
-	public UpdateContentCompany(String id, String firstName, String lastName, String headline, String industry, String publicProfileUrl, UrlResource siteStandardProfileRequest, String profilePictureUrl) {
-		super(id, firstName, lastName, headline, industry, publicProfileUrl, siteStandardProfileRequest, profilePictureUrl);
+	public UpdateContentCompany(String id, LinkedInProfileLocalizedField firstName, LinkedInProfileLocalizedField lastName, LinkedInProfileLocalizedField maidenName, LinkedInProfileProfilePicture profilePicture) {
+		super(id, firstName, lastName, maidenName, profilePicture);
 	}
-	
+
+
 	public Share getCompanyStatusUpdate() {
 		return companyStatusUpdate;
 	}

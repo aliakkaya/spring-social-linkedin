@@ -24,12 +24,7 @@ import java.net.URLEncoder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.social.ApiException;
-import org.springframework.social.linkedin.api.LinkedInProfile;
-import org.springframework.social.linkedin.api.LinkedInProfileFull;
-import org.springframework.social.linkedin.api.LinkedInProfiles;
-import org.springframework.social.linkedin.api.ProfileField;
-import org.springframework.social.linkedin.api.ProfileOperations;
-import org.springframework.social.linkedin.api.SearchParameters;
+import org.springframework.social.linkedin.api.*;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestOperations;
@@ -80,14 +75,14 @@ class ProfileTemplate extends AbstractTemplate implements ProfileOperations {
 		return getUserProfile().getId();
 	}
 
-	public String getProfileUrl() {
-		return getUserProfile().getPublicProfileUrl();
-	}
-
 	public LinkedInProfile getUserProfile() {
 		return getUserProfile(PROFILE_FIELDS, LinkedInProfile.class);
 	}
-	
+
+	public LinkedInProfileEmail getUserProfileEmail() {
+		return getUserProfileEmail(PROFILE_FIELDS, LinkedInProfileEmail.class);
+	}
+
 	public LinkedInProfileFull getUserProfileFull() {
 		return getUserProfile(FULL_PROFILE_FIELDS, LinkedInProfileFull.class);
 	}
@@ -120,16 +115,21 @@ class ProfileTemplate extends AbstractTemplate implements ProfileOperations {
 	}
 
 	private <T> T getUserProfile(String fields, Class<T> type) {
-		return restOperations.getForObject(URIBuilder.fromUri(BASE_URL + "~" + fields).build(), type);
+		return restOperations.getForObject(URIBuilder.fromUri(BASE_ME_URL).build(), type);
+	}
+
+	private <T> T getUserProfileEmail(String fields, Class<T> type) {
+		//return restOperations.getForObject(URIBuilder.fromUri(BASE_ME_URL + "~" + fields).build(), type);
+		return restOperations.getForObject(URIBuilder.fromUri(BASE_EMAIL_URL).build(), type);
 	}
 	
 	private <T> T getProfileFullById(String id, String fields, Class<T> type) {
-		return restOperations.getForObject(URIBuilder.fromUri(BASE_URL + "id=" + id + fields).build(), type);
+		return restOperations.getForObject(URIBuilder.fromUri(BASE_ME_URL + "id=" + id + fields).build(), type);
 	}
 	
 	private <T> T getProfileByPublicUrl(String url, String fields, Class<T> type) {
 		try {
-			URI uri = URIBuilder.fromUri(BASE_URL + "url=" + URLEncoder.encode(url, "UTF-8") + fields).build();
+			URI uri = URIBuilder.fromUri(BASE_ME_URL + "url=" + URLEncoder.encode(url, "UTF-8") + fields).build();
 			return restOperations.exchange(uri, HttpMethod.GET, new HttpEntity<String>(""), type).getBody();
 		} catch (UnsupportedEncodingException unlikely) {
 			unlikely.printStackTrace();
@@ -214,8 +214,10 @@ class ProfileTemplate extends AbstractTemplate implements ProfileOperations {
 		
 		return uriBuilder.build();
 	}
-	
-	static final String PROFILE_FIELDS = ":(id,first-name,last-name,emailAddress,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json";
+
+	static final String PROFILE_FIELDS = ":(id,first-name,last-name,maiden-name,profile-picture)?format=json";
+
+	static final String BASIC_PROFILE_FIELDS = ":(id,first-name,last-name,emailAddress,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json";
 	
 	static final String FULL_PROFILE_FIELDS;
 

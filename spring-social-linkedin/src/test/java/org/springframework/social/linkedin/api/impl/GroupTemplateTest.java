@@ -42,6 +42,8 @@ import org.springframework.social.linkedin.api.PostComment;
 import org.springframework.social.linkedin.api.PostComments;
 
 public class GroupTemplateTest extends AbstractLinkedInApiTest {
+
+	/*
 	@Test
 	public void getGroupMemberships() {
 		mockServer.expect(requestTo(GroupTemplate.GROUP_MEMBERSHIPS_URL + "?oauth2_access_token=ACCESS_TOKEN")).andExpect(method(GET))
@@ -342,5 +344,5 @@ public class GroupTemplateTest extends AbstractLinkedInApiTest {
 	
 		linkedIn.groupOperations().leaveGroup(46964);
 	}
-	
+	*/
 }

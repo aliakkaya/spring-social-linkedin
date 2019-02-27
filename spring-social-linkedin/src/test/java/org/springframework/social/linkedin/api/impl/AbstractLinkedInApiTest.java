@@ -92,13 +92,13 @@ public class AbstractLinkedInApiTest {
 		assertEquals(day, date.getDay());
 	}
 
-	protected void assertProfile(LinkedInProfile connection, String id, String headline, String firstName,
-			String lastName, String industry, String standardUrl) {
+	protected void assertProfile(LinkedInProfile connection, String id, String firstName,
+			String lastName, String maidenName, String profilePicture) {
 		assertEquals(id, connection.getId());
-		assertEquals(headline, connection.getHeadline());
+		assertEquals(maidenName, connection.getMaidenName());
 		assertEquals(firstName, connection.getFirstName());
 		assertEquals(lastName, connection.getLastName());
-		assertEquals(industry, connection.getIndustry());
+		assertEquals(profilePicture, connection.getProfilePicture());
 	}
 	
 
