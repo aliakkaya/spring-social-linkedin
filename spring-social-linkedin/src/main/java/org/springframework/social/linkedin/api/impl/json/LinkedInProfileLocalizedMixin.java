@@ -25,7 +25,10 @@ abstract class LinkedInProfileLocalizedMixin extends LinkedInObjectMixin {
 
 	@JsonCreator
 	LinkedInProfileLocalizedMixin(
-			@JsonProperty("en_US") String en_US) {}
+			@JsonProperty("en_US") String en_US,
+			@JsonProperty("tr_TR") String tr_TR,
+			@JsonProperty("fr_FR") String fr_FR)
+	{}
 
 
 }

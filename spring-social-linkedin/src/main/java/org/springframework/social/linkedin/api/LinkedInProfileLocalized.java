@@ -24,15 +24,25 @@ import java.io.Serializable;
  */
 public class LinkedInProfileLocalized extends LinkedInObject implements Serializable {
 
-		public LinkedInProfileLocalized(String en_US) {
-			this.en_US = en_US;
-		}
+	public LinkedInProfileLocalized(String en_US, String fr_FR, String tr_TR) {
+		this.fr_FR = fr_FR;
+		this.tr_TR = tr_TR;
+		this.en_US = en_US;
+	}
 
-		private String en_US = null;
+	private String en_US = null;
+	private String fr_FR = null;
+	private String tr_TR = null;
 
-		public String getEn_US() {
+	public String getEn_US() {
 			return en_US;
 		}
+	public String getFr_FR() {
+		return fr_FR;
+	}
+	public String getTr_TR() {
+		return tr_TR;
+	}
 
 
 }
